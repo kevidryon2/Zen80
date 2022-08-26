@@ -40,8 +40,7 @@ A fantasy console that uses a Z80 and is capable of 2048 sprites, VGA-quality vi
 | Palettes 	| - 	| 8K 	| The Zephyr80 uses 16-bit colors and 256 palettes, with 16 colors each. 	|  	|
 | Tileset #0 	| Tileset 0-15 	| 8K 	| In the Zephyr80 each tileset contains 256 4bpp 8x8 tiles, each being 32 bytes. 	|  	|
 | Tilemap Tiles 	| Tilemap Tiles 0-15 	| 4K 	| A 64x64 grid of tile indexes. 	|  	|
-| Tilemap Palettes 	| Tilemap Palettes 0-15 	| 2K 	| A 64x64 grid of palette indexes. 	|  	|
-| Unused 	| - 	| 2K 	|  	|  	|
+| Tilemap Palettes 	| Tilemap Palettes 0-15 	| 4K 	| A 64x64 grid of palette indexes. 	|  	|
 
 ### I/O Map
 | Name 	| Banking 	| Size 	| Description 	| Note 	|
@@ -107,13 +106,7 @@ The first 4 bits specify the background layers to be blended, while the last 4 s
 - Mode 3: Subtract Red channels
  
 ##### $FF67-$FF68 (VLAYERMAP)
-Each 4-bit value represents a tileset bank; howeaver, since 2 tilemaps make up a screen, each value is multiplied by 2 (discarding the 5th bit) and the *n*th and (*n*+1)th tilemaps are shown.
-
-###### Example
-
-VLAYERMAP = 4, 6, 7, 2
-
-In this case, the first layer is tilemap 8 and 9, the second layer is tilemap 12 and 13, the third layer is tilemap 14 and 15, and the fourth layer is tilemap 4 and 5.
+Each 4-bit value represents a tilemap bank. The first 4 bits are the tilemap drawn as layer 0, the next 4 bits layer 1, the next 4 layer 2, and the last 4 layer 3.
 
 ##### $FF69-$FF6A (VPOSY)
 The Y position of the "scanning beam" on the screen.
@@ -154,3 +147,28 @@ Proceeds to the next scanline when written to.
 
 ##### $FF7E (WAITFRAME)
 Proceeds to the next frame when written to.
+
+##### $FF7F (UPDATEFRAME)
+Updates the internal frame buffer, KEYH, KEYP, JOYH, and JOYP when written to.
+
+##### $FF80 (KEYH)
+Contains the key currently being held. When read from, this register will contain the next key held, until there are no more keys held and it returns $FF.
+
+##### $FF81 (KEYP)
+Contains the last key pressed. When read from, this register will contain the next key pressed, until there are no more keys pressed and it returns $FF.
+
+##### $FF82 (JOYH)
+Contains the joystick buttons currently being held.
+```
+O-------------------O
+|   ^            B  |
+| <   >        A    |
+|   v               |
+|     sEL  START    |
+O-------------------O
+
+^v<>ABsS
+```
+
+##### $FF83 (JOYP)
+Contains the joystick buttons pressed.
