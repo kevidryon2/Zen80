@@ -62,10 +62,10 @@ Controls the memory bank used by the FLASH memory region A.
 ##### $FF03 (VTILESBANK)
 Controls the memory bank used by the Tileset in VRAM.
 
-Note: Each even-numbered Tileset bank contains the first half of the screen, while every odd-numbered one contains the second half of the screen.
-
 ##### $FF04 (VMAPBANK)
 Controls the memory bank used by the Tilemap Tiles (first 4 bits) and Tilemap Palettes (last 4 bits) in VRAM.
+
+Note: Each even-numbered Tilemap bank contains the first half of the screen, while every odd-numbered one contains the second half of the screen.
 
 ##### $FF05 (OAMBANK)
 Controls the memory bank used by OAM.
