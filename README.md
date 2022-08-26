@@ -1,5 +1,5 @@
 # Zen80
-A fantasy console that uses a Z80 and is capable of 2048 sprites, VGA-quality video at 640x480 resolution, 4MB of banked Work RAM, DMA, 256 palettes each with 16 colors with a color depth of 16bpp, up to 256MB of banked Flash memory, 
+A fantasy console that uses a Z80 and is capable of 2048 sprites, VGA-quality video at 640x480 resolution, 4MB of banked Work RAM, DMA, 256 palettes each with 16 colors with a color depth of 16bpp, up to 512MB of banked Flash memory, 
 
 ## Memory Map
 
