@@ -105,9 +105,15 @@ The first 4 bits specify the background layers to be blended, while the last 4 s
 - Mode 1: Add Blue channels
 - Mode 2: Subtract Green and Blue channels
 - Mode 3: Subtract Red channels
+ 
+##### $FF67-$FF68 (VLAYERMAP)
+Each 4-bit value represents a tileset bank; howeaver, since 2 tilemaps make up a screen, each value is multiplied by 2 (discarding the 5th bit) and the *n*th and (*n*+1)th tilemaps are shown.
 
-##### $FF67-$FF68 (VPOSX)
-The X position of the "scanning beam" on the screen.
+###### Example
+
+VLAYERMAP = 4, 6, 7, 2
+
+In this case, the first layer is tilemap 8 and 9, the second layer is tilemap 12 and 13, the third layer is tilemap 14 and 15, and the fourth layer is tilemap 4 and 5.
 
 ##### $FF69-$FF6A (VPOSY)
 The Y position of the "scanning beam" on the screen.
@@ -148,12 +154,3 @@ Proceeds to the next scanline when written to.
 
 ##### $FF7E (WAITFRAME)
 Proceeds to the next frame when written to.
-
-##### $FF7F-$FF80 (VLAYERMAP)
-Each 4-bit value represents a tileset bank; howeaver, since 2 tilemaps make up a screen, each value is multiplied by 2 (discarding the 5th bit) and the *n*th and (*n*+1)th tilemaps are shown.
-
-###### Example
-
-VLAYERMAP = 4, 6, 7, 2
-
-In this case, the first layer is tilemap 8 and 9, the second layer is tilemap 12 and 13, the third layer is tilemap 14 and 15, and the fourth layer is tilemap 4 and 5.
